@@ -1,19 +1,2 @@
 #!/bin/bash
-
-cwd=$(pwd)
-
-parent_dir=$(dirname "$cwd")
-
-html_files=$(find "$cwd" -type f -name "*.html")
-
-for file in $html_files; do
-
-    parent_file="$parent_dir/$(basename $file)"
-
-    if [ ! -e "$parent_file" ] || [ "$file" -nt "$parent_file" ]; then
-        cp -p "$file" "$parent_dir"
-        echo "Copied $(basename $file) to $parent_dir"
-    else
-        echo "$(basename $file) already exists and is up-to-date in $parent_dir"
-    fi
-done
+cp -un *.html ../
